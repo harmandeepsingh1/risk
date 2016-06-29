@@ -18,17 +18,18 @@ class Player(object):
 
 class Country(object):
 
-    def __init__(self, name, continent):
+    def __init__(self, name, continent, stars):
         self.name = name
         self.continent = continent
+        self.stars = stars
 
 
 class Map(object):
 
     def __init__(self, graph_list, index_country):
         """
-        graph_list -- dict containing `key` as unique index of node in
-                      `index_country_dict` and value will be list of 
+        graph_list -- list containing key as unique index of node in
+                      `index_country` and value will be list of 
                       indexes of adjacent nodes.
                       The main use of this dict is to create the graph
 
