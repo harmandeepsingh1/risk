@@ -26,21 +26,23 @@ class Country(object):
 
 class Map(object):
 
-    def __init__(self, graph_list, index_country):
+    def __init__(self, countries, edges):
         """
-        graph_list -- list containing key as unique index of node in
+        edges     --  list containing key as unique index of node in
                       `index_country` and value will be list of 
                       indexes of adjacent nodes.
                       The main use of this dict is to create the graph
 
-        index_country -- list containing `elements.Country` object
-                         in the order of indexes required in 
-                         `graph_list`
+        countries -- list containing `elements.Country` object
+                     in the order of indexes required in 
+                     `graph_list`
 
         """
-        import copy
-        self.graph_dict = copy.deepcopy(graph_dict)
-        self.index_country_map = copy.deepcopy(index_country_map)
+        self.countries = countries
         self.country_name_index_map = {}
-        for idx, each_country in enumerate(index_country_dict):
-            self.name_index_map[each_country.name] = idx
+        for idx, each_country in enumerate(index_country_map):
+            self.country_name_index_map[each_country.name] = idx
+        self.graph_dict = [[] for x in countries]
+        for each_edge in edges:
+            self.graph_dict[self.country_name_index_map[each_edge[0]]].append(
+                self.country_name_index_map[each_edge[1]])
