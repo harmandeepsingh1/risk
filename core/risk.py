@@ -24,3 +24,9 @@ class Risk(object):
         """
         self.countries = [Country(*country) for country in countries]
         self.map = Map(self.countries, edges)
+        self.country_troops_map = [0] * len(self.countries)
+        for idx, each_country in enumerate(self.countries):
+            self.add_troops(idx, each_country.stars)
+
+    def add_troops(self, country_code, delta):
+        self.country_troops_map[country_code] += delta
